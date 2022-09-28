@@ -133,8 +133,47 @@ int main(void)
 
   }
 
-  /* USER CODE END 2 */
+  void clearNumberOnClock(int num){
+	  if(num == 1) {
+		  GPIOA -> ODR |= 0x0010;
+	  }
+	  if(num == 2) {
+		  GPIOA -> ODR |= 0x0020;
+	  }
+	  if(num == 3) {
+		  GPIOA -> ODR |= 0x0040;
+	  }
+	  if(num == 4) {
+		  GPIOA -> ODR |= 0x0080;
+	  }
+	  if(num == 5) {
+		  GPIOA -> ODR |= 0x0100;
+	  }
+	  if(num == 6) {
+		  GPIOA -> ODR |= 0x0200;
+	  }
+	  if(num == 7) {
+		  GPIOA -> ODR |= 0x0400;
+	  }
+	  if(num == 8) {
+		  GPIOA -> ODR |= 0x0800;
+	  }
+	  if(num == 9) {
+		  GPIOA -> ODR |= 0x1000;
+	  }
+	  if(num == 10) {
+		  GPIOA -> ODR |= 0x2000;
+	  }
+	  if(num == 11) {
+		  GPIOA -> ODR |= 0x4000;
+	  }
+	  if(num == 0) {
+		  GPIOA -> ODR |= 0x8000;
+	  }
+  }
 
+  /* USER CODE END 2 */
+  clearAllClock();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
