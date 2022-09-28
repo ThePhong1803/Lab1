@@ -86,16 +86,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
-  //to turn off all the led from PA4 to PA5, which mean to set these pin high while ignore
-  //PA0 to PA3, we just need to OR the Output Data register with the value 0xfff0
   void clearAllClock(){
 	  GPIOA -> ODR |= 0xfff0;
   }
 
-  //to set the led on, we need to pull the corresponding pin low while ignore other pin
-  //to do that we just need to AND the Output Data Register with the suitable bit's pattern
-  //to turn it on.
+  //int a[12] = {0xffe0, 0xffd0, 0xffb0, 0xff70, 0xfef0, 0xfdf0, 0xfbf0, 0xf7f0, 0xeff0, 0xdff0, 0xbff0, 0x7ff0};
+
+
   void setNumberOnClock(int num){
 	  if(num == 1) {
 		  GPIOA -> ODR &= 0xffef;
@@ -136,7 +133,6 @@ int main(void)
 
   }
 
-  //to clear a pin, we just need to OR the Output Data Register with the position of the pin is 1, the other are 0
   void clearNumberOnClock(int num){
 	  if(num == 1) {
 		  GPIOA -> ODR |= 0x0010;
