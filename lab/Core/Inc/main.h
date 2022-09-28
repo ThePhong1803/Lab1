@@ -58,46 +58,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_RED1_Pin GPIO_PIN_2
-#define LED_RED1_GPIO_Port GPIOA
-#define LED_YELLOW1_Pin GPIO_PIN_3
-#define LED_YELLOW1_GPIO_Port GPIOA
-#define LED_GREEN1_Pin GPIO_PIN_4
-#define LED_GREEN1_GPIO_Port GPIOA
-#define LED_RED2_Pin GPIO_PIN_5
-#define LED_RED2_GPIO_Port GPIOA
-#define LED_YELLOW2_Pin GPIO_PIN_6
-#define LED_YELLOW2_GPIO_Port GPIOA
-#define LED_GREEN2_Pin GPIO_PIN_7
-#define LED_GREEN2_GPIO_Port GPIOA
-#define a1_Pin GPIO_PIN_0
-#define a1_GPIO_Port GPIOB
-#define b1_Pin GPIO_PIN_1
-#define b1_GPIO_Port GPIOB
-#define c1_Pin GPIO_PIN_2
-#define c1_GPIO_Port GPIOB
-#define c2_Pin GPIO_PIN_10
-#define c2_GPIO_Port GPIOB
-#define d2_Pin GPIO_PIN_11
-#define d2_GPIO_Port GPIOB
-#define e2_Pin GPIO_PIN_12
-#define e2_GPIO_Port GPIOB
-#define f2_Pin GPIO_PIN_13
-#define f2_GPIO_Port GPIOB
-#define g2_Pin GPIO_PIN_14
-#define g2_GPIO_Port GPIOB
-#define d1_Pin GPIO_PIN_3
-#define d1_GPIO_Port GPIOB
-#define e1_Pin GPIO_PIN_4
-#define e1_GPIO_Port GPIOB
-#define f1_Pin GPIO_PIN_5
-#define f1_GPIO_Port GPIOB
-#define g1_Pin GPIO_PIN_6
-#define g1_GPIO_Port GPIOB
-#define a2_Pin GPIO_PIN_8
-#define a2_GPIO_Port GPIOB
-#define b2_Pin GPIO_PIN_9
-#define b2_GPIO_Port GPIOB
+#define L1_Pin GPIO_PIN_4
+#define L1_GPIO_Port GPIOA
+#define L2_Pin GPIO_PIN_5
+#define L2_GPIO_Port GPIOA
+#define L3_Pin GPIO_PIN_6
+#define L3_GPIO_Port GPIOA
+#define L4_Pin GPIO_PIN_7
+#define L4_GPIO_Port GPIOA
+#define L5_Pin GPIO_PIN_8
+#define L5_GPIO_Port GPIOA
+#define L6_Pin GPIO_PIN_9
+#define L6_GPIO_Port GPIOA
+#define L7_Pin GPIO_PIN_10
+#define L7_GPIO_Port GPIOA
+#define L8_Pin GPIO_PIN_11
+#define L8_GPIO_Port GPIOA
+#define L9_Pin GPIO_PIN_12
+#define L9_GPIO_Port GPIOA
+#define L10_Pin GPIO_PIN_13
+#define L10_GPIO_Port GPIOA
+#define L11_Pin GPIO_PIN_14
+#define L11_GPIO_Port GPIOA
+#define L12_Pin GPIO_PIN_15
+#define L12_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
