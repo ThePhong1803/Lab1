@@ -89,6 +89,50 @@ int main(void)
   void clearAllClock(){
 	  GPIOA -> ODR |= 0xfff0;
   }
+
+  //int a[12] = {0xffe0, 0xffd0, 0xffb0, 0xff70, 0xfef0, 0xfdf0, 0xfbf0, 0xf7f0, 0xeff0, 0xdff0, 0xbff0, 0x7ff0};
+
+
+  void setNumberOnClock(int num){
+	  if(num == 1) {
+		  GPIOA -> ODR &= 0xffef;
+	  }
+	  if(num == 2) {
+		  GPIOA -> ODR &= 0xffdf;
+	  }
+	  if(num == 3) {
+		  GPIOA -> ODR &= 0xffbf;
+	  }
+	  if(num == 4) {
+		  GPIOA -> ODR &= 0xff7f;
+	  }
+	  if(num == 5) {
+		  GPIOA -> ODR &= 0xfeff;
+	  }
+	  if(num == 6) {
+		  GPIOA -> ODR &= 0xfdff;
+	  }
+	  if(num == 7) {
+		  GPIOA -> ODR &= 0xfbff;
+	  }
+	  if(num == 8) {
+		  GPIOA -> ODR &= 0xf7ff;
+	  }
+	  if(num == 9) {
+		  GPIOA -> ODR &= 0xefff;
+	  }
+	  if(num == 10) {
+		  GPIOA -> ODR &= 0xdfff;
+	  }
+	  if(num == 11) {
+		  GPIOA -> ODR &= 0xbfff;
+	  }
+	  if(num == 0) {
+		  GPIOA -> ODR &= 0x7fff;
+	  }
+
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
