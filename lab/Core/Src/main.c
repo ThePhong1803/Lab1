@@ -86,73 +86,58 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
-  HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
-  HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
-
-  HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
-  HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
-  HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, RESET);
-
-  int rcd1 = 5, rcd2 = -1;
-  int ycd1 = -1, ycd2 = -1;
-  int gcd1 = -1, gcd2 = 3;
+	void display7Segment(int num){
+		if(num == 0){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0040;
+		}
+		if(num == 1){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0079;
+		}
+		if(num == 2){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0024;
+		}
+		if(num == 3){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0030;
+		}
+		if(num == 4){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0019;
+		}
+		if(num == 5){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0012;
+		}
+		if(num == 6){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0002;
+		}
+		if(num == 7){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0078;
+		}
+		if(num == 8){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0080;
+		}
+		if(num == 9){
+			GPIOB -> ODR &= 0xff00;
+			GPIOB -> ODR |= 0x0090;
+		}
+	}
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int count = 0;
   while (1)
   {
+	  display7Segment(count);
+	  count = (count + 1) % 10;
 	  HAL_Delay(1000);
-	  if(rcd1 > 0) rcd1--;
-	  if(ycd1 > 0) ycd1--;
-	  if(gcd1 > 0) gcd1--;
-
-	  if(rcd2 > 0) rcd2--;
-	  if(ycd2 > 0) ycd2--;
-	  if(gcd2 > 0) gcd2--;
-
-	  if(!rcd1){
-		  HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
-		  HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
-		  rcd1 = -1;
-		  gcd1 = 3;
-	  }
-
-	  if(!ycd1){
-		  HAL_GPIO_TogglePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin);
-		  HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
-		  ycd1 = -1;
-		  rcd1 = 5;
-	  }
-
-	  if(!gcd1){
-		  HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
-		  HAL_GPIO_TogglePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin);
-		  gcd1 = -1;
-		  ycd1 = 2;
-	  }
-
-	  if(!rcd2){
-		  HAL_GPIO_TogglePin(LED_RED2_GPIO_Port, LED_RED2_Pin);
-		  HAL_GPIO_TogglePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin);
-		  rcd2 = -1;
-		  gcd2= 3;
-	  }
-
-	  if(!ycd2){
-		  HAL_GPIO_TogglePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin);
-		  HAL_GPIO_TogglePin(LED_RED2_GPIO_Port, LED_RED2_Pin);
-		  ycd2 = -1;
-		  rcd2 = 5;
-	  }
-
-	  if(!gcd2){
-		  HAL_GPIO_TogglePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin);
-		  HAL_GPIO_TogglePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin);
-		  gcd2 = -1;
-		  ycd2 = 2;
-	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -205,20 +190,20 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED1_Pin|LED_YELLOW1_Pin|LED_GREEN1_Pin|LED_RED2_Pin
-                          |LED_YELLOW2_Pin|LED_GREEN2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, a_Pin|b_Pin|c_Pin|d_Pin
+                          |e_Pin|f_Pin|g_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_RED1_Pin LED_YELLOW1_Pin LED_GREEN1_Pin LED_RED2_Pin
-                           LED_YELLOW2_Pin LED_GREEN2_Pin */
-  GPIO_InitStruct.Pin = LED_RED1_Pin|LED_YELLOW1_Pin|LED_GREEN1_Pin|LED_RED2_Pin
-                          |LED_YELLOW2_Pin|LED_GREEN2_Pin;
+  /*Configure GPIO pins : a_Pin b_Pin c_Pin d_Pin
+                           e_Pin f_Pin g_Pin */
+  GPIO_InitStruct.Pin = a_Pin|b_Pin|c_Pin|d_Pin
+                          |e_Pin|f_Pin|g_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
