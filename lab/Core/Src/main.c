@@ -172,12 +172,42 @@ int main(void)
 	  }
   }
 
+
   /* USER CODE END 2 */
+
+  //timer counter for tracking hour-minute-second, initial time can be change here
+  int hour_counter = 0;
+  int minute_counter = 0;
+  int second_counter = 0;
+
+  //initial time
   clearAllClock();
+  setNumberOnClock(second_counter/5);
+  setNumberOnClock(minute_counter/5);
+  setNumberOnClock(hour_counter);
+
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //wait for 5 second for the clock to update
+	  HAL_Delay(5000);
+
+	  //time update for hour_counter, minute_counter, second_counter
+	  if(second_counter < 60) second_counter+=5;
+	  if(second_counter == 60 && minute_counter < 60) minute_counter+=1;
+	  if(second_counter == 60 && minute_counter == 60 && hour_counter < 12) hour_counter++;
+	  if(second_counter == 60) second_counter = 0;
+	  if(minute_counter == 60) minute_counter = 0;
+	  if(hour_counter == 12)   hour_counter = 0;
+
+	  //display hour-minute-second
+	  clearAllClock();
+	  setNumberOnClock(second_counter/5);
+	  setNumberOnClock(minute_counter/5);
+	  setNumberOnClock(hour_counter);
 
     /* USER CODE END WHILE */
 

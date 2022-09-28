@@ -64,8 +64,8 @@ all: main-build
 main-build: lab.elf secondary-outputs
 
 # Tool invocations
-lab.elf: $(OBJS) $(USER_OBJS) C:\Users\PC\Desktop\VXL_VDK\lab\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "lab.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\PC\Desktop\VXL_VDK\lab\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+lab.elf: $(OBJS) $(USER_OBJS) C:\Users\PC\Desktop\repo\lab\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "lab.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\PC\Desktop\repo\lab\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
