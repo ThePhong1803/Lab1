@@ -86,89 +86,91 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  //to turn off all the led from PA4 to PA5, which mean to set these pin high while ignore
+  //PA0 to PA3, we just need to OR the Output Data register with the value 0xfff0
   void clearAllClock(){
 	  GPIOA -> ODR |= 0xfff0;
   }
 
-  //int a[12] = {0xffe0, 0xffd0, 0xffb0, 0xff70, 0xfef0, 0xfdf0, 0xfbf0, 0xf7f0, 0xeff0, 0xdff0, 0xbff0, 0x7ff0};
-
-
+  //to set the led on, we need to pull the corresponding pin low while ignore other pin
+  //to do that we just need to AND the Output Data Register with the suitable bit's pattern
+  //to turn it on.
   void setNumberOnClock(int num){
 	  if(num == 1) {
-		  GPIOA -> ODR &= 0xffef;
+		  GPIOA -> ODR &= 0xffef;   //number 1 on clock
 	  }
 	  if(num == 2) {
-		  GPIOA -> ODR &= 0xffdf;
+		  GPIOA -> ODR &= 0xffdf;   //number 2 on clock 
 	  }
 	  if(num == 3) {
-		  GPIOA -> ODR &= 0xffbf;
+		  GPIOA -> ODR &= 0xffbf;   //number 3 on clock
 	  }
 	  if(num == 4) {
-		  GPIOA -> ODR &= 0xff7f;
+		  GPIOA -> ODR &= 0xff7f;   //number 4 on clock
 	  }
 	  if(num == 5) {
-		  GPIOA -> ODR &= 0xfeff;
+		  GPIOA -> ODR &= 0xfeff;   //number 5 on clock
 	  }
 	  if(num == 6) {
-		  GPIOA -> ODR &= 0xfdff;
+		  GPIOA -> ODR &= 0xfdff;   //number 6 on clock
 	  }
 	  if(num == 7) {
-		  GPIOA -> ODR &= 0xfbff;
+		  GPIOA -> ODR &= 0xfbff;   //number 7 on clock
 	  }
 	  if(num == 8) {
-		  GPIOA -> ODR &= 0xf7ff;
+		  GPIOA -> ODR &= 0xf7ff;   //number 8 on clock
 	  }
 	  if(num == 9) {
-		  GPIOA -> ODR &= 0xefff;
+		  GPIOA -> ODR &= 0xefff;   //number 9 on clock
 	  }
 	  if(num == 10) {
-		  GPIOA -> ODR &= 0xdfff;
+		  GPIOA -> ODR &= 0xdfff;   //number 10 on clock
 	  }
 	  if(num == 11) {
-		  GPIOA -> ODR &= 0xbfff;
+		  GPIOA -> ODR &= 0xbfff;   //number 11 on clock
 	  }
 	  if(num == 0) {
-		  GPIOA -> ODR &= 0x7fff;
+		  GPIOA -> ODR &= 0x7fff;   //number 0 on clock
 	  }
-
   }
 
+  //to clear a pin, we just need to OR the Output Data Register with the position of the pin is 1, the other are 0
   void clearNumberOnClock(int num){
 	  if(num == 1) {
-		  GPIOA -> ODR |= 0x0010;
+		  GPIOA -> ODR |= 0x0010;   //clear number 1 on clock
 	  }
 	  if(num == 2) {
-		  GPIOA -> ODR |= 0x0020;
+		  GPIOA -> ODR |= 0x0020;   //clear number 2 on clock
 	  }
 	  if(num == 3) {
-		  GPIOA -> ODR |= 0x0040;
+		  GPIOA -> ODR |= 0x0040;   //clear number 3 on clock
 	  }
 	  if(num == 4) {
-		  GPIOA -> ODR |= 0x0080;
+		  GPIOA -> ODR |= 0x0080;   //clear number 4 on clock
 	  }
 	  if(num == 5) {
-		  GPIOA -> ODR |= 0x0100;
+		  GPIOA -> ODR |= 0x0100;   //clear number 5 on clock
 	  }
 	  if(num == 6) {
-		  GPIOA -> ODR |= 0x0200;
+		  GPIOA -> ODR |= 0x0200;   //clear number 6 on clock
 	  }
 	  if(num == 7) {
-		  GPIOA -> ODR |= 0x0400;
+		  GPIOA -> ODR |= 0x0400;   //clear number 7 on clock
 	  }
 	  if(num == 8) {
-		  GPIOA -> ODR |= 0x0800;
+		  GPIOA -> ODR |= 0x0800;   //clear number 8 on clock
 	  }
 	  if(num == 9) {
-		  GPIOA -> ODR |= 0x1000;
+		  GPIOA -> ODR |= 0x1000;   //clear number 9 on clock
 	  }
 	  if(num == 10) {
-		  GPIOA -> ODR |= 0x2000;
+		  GPIOA -> ODR |= 0x2000;   //clear number 10 on clock
 	  }
 	  if(num == 11) {
-		  GPIOA -> ODR |= 0x4000;
+		  GPIOA -> ODR |= 0x4000;   //clear number 11 on clock
 	  }
 	  if(num == 0) {
-		  GPIOA -> ODR |= 0x8000;
+		  GPIOA -> ODR |= 0x8000;   //clear number 0 on clock
 	  }
   }
 
