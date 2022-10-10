@@ -86,10 +86,17 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  //initial state for every LED. we set for only 1 LED is turn on,
+  //which is RED LED 
   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET);
   HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
   HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, SET);
 
+  //counter variable for every LED
+  //red led counter is 5 seconds
+  //green led counter is 3 seconds
+  //yellow led counter is 2 seconds
+  //-1 mean that counter is disabled, only one counter is enabled at anytime
   int rcd = 5;
   int ycd = -1;
   int gcd = -1;
@@ -99,11 +106,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //wait for 1 second and decrease the current active counter
 	  HAL_Delay(1000);
 	  if(rcd > 0) rcd--;
 	  if(ycd > 0) ycd--;
 	  if(gcd > 0) gcd--;
 
+    //if red counter = 0, the turn off LED RED and turn on GREEN LED
+    //disable red led counter and set green led counter to 3 
 	  if(!rcd){
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
@@ -111,6 +121,8 @@ int main(void)
 		  gcd= 3;
 	  }
 
+    //if yellow led counter = 0, the turn off YELLOW RED and turn on LED RED
+    //disable yellow led counter and set red led counter to 5
 	  if(!ycd){
 		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
@@ -118,6 +130,8 @@ int main(void)
 		  rcd= 5;
 	  }
 
+    //if green led counter = 0, the turn off GREEN LED and turn on YELLOW LED
+    //disable green led counter and set yellow led counter to 2
 	  if(!gcd){
 		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
