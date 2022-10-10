@@ -86,55 +86,60 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+
+	// to display a number on 7-segment led, we will use the lower 7 bit of PORTB
+  // to turn on the segement to display a number, we just to clear the low 7 bit
+  // and send the correct bit pattern to display the number
 	void display7Segment(int num){
 		if(num == 0){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0040;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0040;   //set port number 0
 		}
 		if(num == 1){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0079;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0079;   //set port number 1
 		}
 		if(num == 2){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0024;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0024;   //set port number 2
 		}
 		if(num == 3){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0030;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0030;   //set port number 3
 		}
 		if(num == 4){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0019;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0019;   //set port number 4
 		}
 		if(num == 5){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0012;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0012;   //set port number 5
 		}
 		if(num == 6){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0002;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0002;   //set port number 6
 		}
 		if(num == 7){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0078;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0078;   //set port number 7
 		}
 		if(num == 8){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0080;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0080;   //set port number 8
 		}
 		if(num == 9){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0090;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0090;   //set port number 9
 		}
 	}
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int count = 0;
+  int count = 0;  //set initial counter value
   while (1)
   {
+    //every second, display count number and update count
 	  display7Segment(count);
 	  count = (count + 1) % 10;
 	  HAL_Delay(1000);
