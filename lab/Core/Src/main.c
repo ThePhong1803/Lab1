@@ -87,6 +87,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   void clearAllClock(){
+    //write to the output register 0xfff0 to clear all led while ignore the first 4 bits
 	  GPIOA -> ODR |= 0xfff0;
   }
   /* USER CODE END 2 */
