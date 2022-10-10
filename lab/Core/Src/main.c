@@ -86,49 +86,53 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  void display7Segment1(int num){
+
+	//we will use the lower 7 bit of PORTB to controll the segments
+	//to display number we need to set to lower 7bit of PORTB to corresponding bit pattern
+  	void display7Segment1(int num){
 		if(num == 0){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0040;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0040;   //set port number 0
 		}
 		if(num == 1){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0079;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0079;   //set port number 1
 		}
 		if(num == 2){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0024;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0024;   //set port number 2
 		}
 		if(num == 3){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0030;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0030;   //set port number 3
 		}
 		if(num == 4){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0019;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0019;   //set port number 4
 		}
 		if(num == 5){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0012;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0012;   //set port number 5
 		}
 		if(num == 6){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0002;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0002;   //set port number 6
 		}
 		if(num == 7){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0078;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0078;   //set port number 7
 		}
 		if(num == 8){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0080;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0080;   //set port number 8
 		}
 		if(num == 9){
-			GPIOB -> ODR &= 0xff00;
-			GPIOB -> ODR |= 0x0090;
+			GPIOB -> ODR &= 0xff00;   //clear port
+			GPIOB -> ODR |= 0x0090;   //set port number 9
 		}
 	}
 
+  //same as display7Segment1
   void display7Segment2(int num){
   		if(num == 0){
   			GPIOB -> ODR &= 0x00ff;
@@ -171,6 +175,8 @@ int main(void)
   			GPIOB -> ODR |= 0x9000;
   		}
   	}
+
+  //set initial state for the trafic light
   HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
   HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
   HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
@@ -179,6 +185,8 @@ int main(void)
   HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
   HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, RESET);
 
+  //set counter for the first and second traffic light
+  //-1 mean the counter is disable
   int rcd1 = 5, rcd2 = -1;
   int ycd1 = -1, ycd2 = -1;
   int gcd1 = -1, gcd2 = 3;
@@ -188,6 +196,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //wait for 1 second then update and display the current active counter
 	  HAL_Delay(1000);
 	  if(rcd1 > 0) {
 		  rcd1--;
@@ -216,6 +225,8 @@ int main(void)
 	  }
 
 
+	// if the counter reach zero, change state of the leds and the disable the old counter
+	// and set next counter
 	  if(!rcd1){
 		  HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
 		  HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
