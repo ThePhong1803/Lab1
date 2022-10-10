@@ -86,6 +86,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  //the array of bit pattern for only 1 led is turn on, i is the index for array
   int a[12] = {0xffef, 0xffdf, 0xffbf, 0xff7f, 0xfeff, 0xfdff, 0xfbff, 0xf7ff, 0xefff, 0xdfff, 0xbfff, 0x7fff};
   int i = 0;
   /* USER CODE END 2 */
@@ -94,6 +95,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //wait for 1 second and set write to ODR of PORTA a[i] for test pattern on the clock
 	  GPIOA -> ODR = a[i];
 	  i = (i + 1) % 12;
 	  HAL_Delay(1000);
