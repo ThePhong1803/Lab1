@@ -86,14 +86,18 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  //initial state for the first traffic light, only LED RED is turn on
   HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
   HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
   HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
 
+  //initial state for the second traffic light, only GREEN LED is turn on
   HAL_GPIO_WritePin(LED_RED2_GPIO_Port, LED_RED2_Pin, SET);
   HAL_GPIO_WritePin(LED_YELLOW2_GPIO_Port, LED_YELLOW2_Pin, SET);
   HAL_GPIO_WritePin(LED_GREEN2_GPIO_Port, LED_GREEN2_Pin, RESET);
 
+  //led counter for traffic light, -1 mean that counter is disabled
+  //for RED LED counter is 3, YELLOW LED is 2 and GREEN LED is 3
   int rcd1 = 5, rcd2 = -1;
   int ycd1 = -1, ycd2 = -1;
   int gcd1 = -1, gcd2 = 3;
@@ -103,6 +107,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //wait for 1 second and decrease current active counter
 	  HAL_Delay(1000);
 	  if(rcd1 > 0) rcd1--;
 	  if(ycd1 > 0) ycd1--;
@@ -112,6 +117,8 @@ int main(void)
 	  if(ycd2 > 0) ycd2--;
 	  if(gcd2 > 0) gcd2--;
 
+    //then if any counter reach zero, turn off current led and turn on
+    //the corresponding led, disable old led counter and set counter for the next led
 	  if(!rcd1){
 		  HAL_GPIO_TogglePin(LED_RED1_GPIO_Port, LED_RED1_Pin);
 		  HAL_GPIO_TogglePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin);
